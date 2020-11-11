@@ -1,0 +1,8 @@
+amélioré la gestion des projets:
+
+	pour les prof :
+		- ajouter des projets
+		- ajouter des élèves aux projets
+	
+	pour les élèves:
+		- ajouter des notes sur les projets en cour
