@@ -6,3 +6,31 @@ amélioré la gestion des projets:
 	
 	pour les élèves:
 		- ajouter des notes sur les projets en cour
+
+
+
+
+
+
+Questions :
+
+	un élève peut-il avoir plusieurs projets ?
+		réponse : oui
+
+	un prof peut-il avoir plusieurs projet ?
+		réponse : 
+
+	quel est le lien entre un prof et le le projet qu'il ajoute ? il est directement en charge de gérer le projet ?
+		réponse : 
+
+	y a-t-il une charte graphique pour le site ?
+		réponse : 
+
+	qui a les droit sur le projet (modifier, delete) ?
+		réponse : 
+
+	est ce qu'on doit faire un vrai CDC ou bien le git kraken et board suffit ?
+		réponse : 
+
+	combien de temps on a ?
+		réponse : 
