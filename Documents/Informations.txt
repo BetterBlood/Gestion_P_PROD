@@ -1,0 +1,9 @@
+plusieurs projets par prod et par élève
+
+profs entrent un projet et l'administrent à un élève (peut être administré par un autre prof.)
+
+Faut avoir une liste des fonctionnlités etc. mais pas besoin d'un "vrai" CDC. (fonctionnalités, etc. au cas où qqn devrait reprendre le projet)
+
+On a jusque janvier mais possible + en projet pré-TPI.
+
+Tous les profs ont tous les droits sur les projets. élèves ont des droits par projet. mettre un statut (priorités, status, commentaires) en live.
