@@ -3,8 +3,8 @@
 -- Database Section
 -- ________________ 
 
-create database P_PROD;
-use P_PROD;
+create database db_P_PROD;
+use db_P_PROD;
 
 
 -- Tables Section
@@ -29,8 +29,8 @@ create table t_project (
      proDescription varchar(200) not null,
      proStartingDate date not null,
      proEndingDate date not null,
-     idCoordinator int not null auto_increment,
-     idInitiator int not null auto_increment,
+     idCoordinator int null,
+     idInitiator int not null,
      constraint ID_t_project_ID primary key (idProject));
 
 create table t_student (
