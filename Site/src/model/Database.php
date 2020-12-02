@@ -156,12 +156,23 @@ include "config.ini.php";
         header("location: index.php");
     }
 
-    public function insertSection($name){
-        $query = "INSERT INTO t_section (secName) VALUES (:name)";
+    // Insérer un projet à la base de données
+    public function insertProject($proName, $proDescription, $idInitiator){
+        $query = "INSERT INTO t_project (proName, proDescription, idInitiator) VALUES (:proName, :proDescription, :idInitiator)";
         $values = array(
             1=> array(
-                'marker' => ':name',
-                'var' => $name,
+                'marker' => ':proName',
+                'var' => $proName,
+                'type' => PDO::PARAM_STR
+            ),
+            2=> array(
+                'marker' => ':proDescription',
+                'var' => $proDescription,
+                'type' => PDO::PARAM_STR
+            ),
+            3=> array(
+                'marker' => ':idInitiator',
+                'var' => $idInitiator,
                 'type' => PDO::PARAM_STR
             )
         );
