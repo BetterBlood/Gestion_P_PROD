@@ -20,22 +20,14 @@
   <h1 class="d-flex justify-content-center">HEADER</h1>
 
   <div class="mt-4 d-flex justify-content-center">
-    <form class="w-50" action="" method="POST">
+    <form class="w-50" action="../controller/insertProject.php  " method="POST">
       <div class="form-group">
         <strong><label for="proName">Titre de projet : </label></strong>
-        <input type="text" class="form-control" id="proName" placeholder="Titre...">
+        <input type="text" class="form-control" id="proName" name="proName" placeholder="Titre...">
       </div>
       <div class="form-group">
         <strong><label class="mt-2" for="proDescription">Description du projet : </label></strong>
-        <textarea class="form-control" id="proDescription" placeholder="Description..." rows="7"></textarea>
-      </div>
-      <div class="form-group">
-        <strong><label class="mt-2" for="proPriority">Priorité : </label></strong><br>
-        <select name="proPriority">
-          <option value="1">Basse</option>
-          <option value="2">Moyenne</option>
-          <option value="3">Haute</option>
-        </select>
+        <textarea class="form-control" id="proDescription" name="proDescription" placeholder="Description..." rows="7"></textarea>
       </div>
       <div>
         <button type="submit" class="mt-2 mb-5 btn btn-primary">Créer le projet</button>
