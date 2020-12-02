@@ -9,7 +9,7 @@
   -->
   <meta charset="utf-8">
   <title>Titre de la page</title>
-  <meta http-equiv="refresh" content="0; url = /view/homePage.php">
+  <meta http-equiv="refresh" content="0; url = src/controller/home.php">
 </head>
 
 <body>
