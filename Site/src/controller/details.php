@@ -73,63 +73,6 @@
 <main role="main">
 
   <!-- Modal -->
-  <div class="modal fade" id="teacher" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Ajouter une imprimante</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="insertTeacher.php" method="post">
-            <div class="form-group">
-              <label for="exampleFormControlInputFir">Prénom</label>
-              <input type="text" class="form-control" id="exampleFormControlInputFir" name="firstName">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInputLast">Nom</label>
-              <input type="text" class="form-control" id="exampleFormControlInputLast" name="lastName">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Section</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="section">
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="inlineRadio1">Sexe</label><br>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="m">
-                <label class="form-check-label" for="inlineRadio1">Homme</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="w">
-                <label class="form-check-label" for="inlineRadio2">Femme</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="o">
-                <label class="form-check-label" for="inlineRadio3">Transgenre</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Surnom</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" name="nickName">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Origine du surnom</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="origin"></textarea>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-              <input type="submit" class="btn btn-primary" value="Ajouter">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="modal fade" id="connection" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
