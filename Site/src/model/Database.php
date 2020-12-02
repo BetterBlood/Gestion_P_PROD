@@ -86,6 +86,29 @@ include "config.ini.php";
         return $result;
     }
 
+    /**
+     * TODO: � compl�ter
+     */
+    public function getProjectById(int $idProject){
+        $query = "SELECT * FROM t_project WHERE idProject=" . $idProject;
+        $req = $this->queryPrepareExecute($query,null);
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result[0];
+    }
+    
+    /**
+     * TODO: � compl�ter
+     */
+    public function getTeacherById(int $idTeacher){
+        $query = 'SELECT * FROM t_teacher WHERE  idTeacher =' . $idTeacher;
+        $req = $this->queryPrepareExecute($query,null);
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result[0];
+    }
+
+
     public function getSomeTeachers($request){
         $query = "SELECT * FROM t_teacher WHERE (CONCAT(teaFirstName, ' ', teaLastName)) LIKE '%" . $request . "%'";
         $req = $this->queryPrepareExecute($query,null);
@@ -160,17 +183,6 @@ include "config.ini.php";
         $req = $this->queryPrepareExecute($query,null);
         $this->unsetData($req);
         header("location: index.php");
-    }
-
-    /**
-     * TODO: � compl�ter
-     */
-    public function getOneTeacher($id){
-        $query = 'SELECT * FROM t_teacher WHERE  idTeacher =' . $id;
-        $req = $this->queryPrepareExecute($query,null);
-        $result = $this->formatData($req);
-        $this->unsetData($req);
-        return $result[0];
     }
 
     /**
