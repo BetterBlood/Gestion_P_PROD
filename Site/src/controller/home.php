@@ -7,6 +7,14 @@
     //var_dump($projects);
 ?>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ETML HyperProject</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -26,7 +34,7 @@
 
     </header>
         <div class="container">
-            <table>
+            <table classe="table table-striped">
                 <thead>
                     <tr>
                         <th>Date de début</th>
@@ -41,6 +49,15 @@
                     <?php
                         foreach($projects as $project)
                         {
+                            $initiatorTeacher = $database->getTeacherById($project["idInitiator"]);
+                            $coordinatorTeacherLastName = "aucun prof assigné";
+                            $students = $database->getStudentsByProjectId($project["idProject"]);
+
+                            if (isset($project["idCoordinator"]))
+                            {
+                                $coordinatorTeacherLastName = $database->getTeacherById($project["idCoordinator"])["teaLastName"];
+                            }
+
                             echo '<tr>';
                             
                             echo '<td>' . $project["proStartingDate"] . '</td>';
@@ -48,11 +65,34 @@
                             echo '<td>' . $project["proDescription"] . '</td>';
 
                             // TODO : rechercher dans la table des prof les ids ci-dessous et les affichers, 
-                            echo '<td>' . $project["idInitiator"] . ', ' . $project["idCoordinator"] . '</td>';
+                            echo '<td>' . $initiatorTeacher["teaLastName"] . ', ' . $coordinatorTeacherLastName. '</td>';
 
                             // TODO : vérifier si des élèves sont attribué si oui les afficher sinon afficher :"aucun élèves assignés"
-                            echo '<td>prendre le belong ayant l\'idProjet : ' . $project["idProject"] . '</td>';
-                            
+                            echo '<td>';
+                                if(count($students) == 0)
+                                {
+                                    echo "aucun élève assigné.";
+                                }
+                                else 
+                                {
+                                    $i = 0;
+
+                                    foreach($students as $student)
+                                    {
+                                        if ($i < count($students) - 1)
+                                        {
+                                            echo $student["stuLastName"] . ", ";
+                                        }
+                                        else
+                                        {
+                                            echo $student["stuLastName"];
+                                        }
+                                        $i++;
+                                    }
+                                }
+
+                                
+                            echo '</td>';
                             echo '</tr>';
                         }
                     ?>
