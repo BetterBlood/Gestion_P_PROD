@@ -11,9 +11,6 @@
 </head>
 
 <body>
-    <header>
-        <h1>Gestion des projets P_PROD</h1>
-
   <header>
     <h1>Gestion des projets P_PROD</h1>
 
