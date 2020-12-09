@@ -1,4 +1,4 @@
-amélioré la gestion des projets:
+améliorer la gestion des projets:
 
 	pour les prof :
 		- ajouter des projets
