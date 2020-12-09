@@ -14,42 +14,22 @@
     <header>
         <h1>Gestion des projets P_PROD</h1>
 
-        <a href="..\view\addProject.html">Ajouter un projet</a>
-        <a href="..\view\homePage.php?archive=true">Projets archivés</a>
+  <header>
+    <h1>Gestion des projets P_PROD</h1>
 
-        <form id="formLogin" action="login.php" méthode="post">
-            <input type="text" id="pseudo" name="pseudo" placeholder="Login">
-            <br>
-            <input type="password" id="password" name="password" placeholder="Password">
-        </form>
-        <button type="submit" form="formLogin" value="Submit">Se connecter</button>
+    <a href="..\view\addProject.html">Ajouter un projet</a>
+    <a href="..\controller\home.php?archive=true">Projets archivés</a>
 
-    </header>
-
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
-  <a class="navbar-brand" href="#"><strong>ETML HyperProject</strong></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Accueil <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="printersList.php">Ajouter un projet<span class="sr-only"></span></a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0" method="post"  action="#">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchValue">
-      <button class="btn btn-dark my-2 my-sm-0" name="search" type="submit">Search</button>
+    <form id="formLogin" action="login.php" méthode="post">
+        <input type="text" id="pseudo" name="pseudo" placeholder="Login">
+        <br>
+        <input type="password" id="password" name="password" placeholder="Password">
     </form>
-  </div>
-</nav>
+    <button type="submit" form="formLogin" value="Submit">Se connecter</button>
 
+  </header>
         <div class="container">
-            <table>
+            <table classe="table table-striped">
                 <thead>
                     <tr>
                         <th>Date de début</th>
@@ -64,6 +44,15 @@
                     <?php
                         foreach($projects as $project)
                         {
+                            $initiatorTeacher = $database->getTeacherById($project["idInitiator"]);
+                            $coordinatorTeacherLastName = "aucun prof assigné";
+                            $students = $database->getStudentsByProjectId($project["idProject"]);
+
+                            if (isset($project["idCoordinator"]))
+                            {
+                                $coordinatorTeacherLastName = $database->getTeacherById($project["idCoordinator"])["teaLastName"];
+                            }
+
                             echo '<tr>';
                             
                             echo '<td>' . $project["proStartingDate"] . '</td>';
@@ -71,11 +60,34 @@
                             echo '<td>' . $project["proDescription"] . '</td>';
 
                             // TODO : rechercher dans la table des prof les ids ci-dessous et les affichers, 
-                            echo '<td>' . $project["idInitiator"] . ', ' . $project["idCoordinator"] . '</td>';
+                            echo '<td>' . $initiatorTeacher["teaLastName"] . ', ' . $coordinatorTeacherLastName. '</td>';
 
                             // TODO : vérifier si des élèves sont attribué si oui les afficher sinon afficher :"aucun élèves assignés"
-                            echo '<td>prendre le belong ayant l\'idProjet : ' . $project["idProject"] . '</td>';
-                            
+                            echo '<td>';
+                                if(count($students) == 0)
+                                {
+                                    echo "aucun élève assigné.";
+                                }
+                                else 
+                                {
+                                    $i = 0;
+
+                                    foreach($students as $student)
+                                    {
+                                        if ($i < count($students) - 1)
+                                        {
+                                            echo $student["stuLastName"] . ", ";
+                                        }
+                                        else
+                                        {
+                                            echo $student["stuLastName"];
+                                        }
+                                        $i++;
+                                    }
+                                }
+
+                                
+                            echo '</td>';
                             echo '</tr>';
                         }
                     ?>
@@ -83,7 +95,7 @@
                 </tbody>
             </table>
         </div>
-    
+
 </body>
 <footer>
 
