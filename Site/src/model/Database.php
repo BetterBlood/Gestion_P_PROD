@@ -89,6 +89,28 @@ include "config.ini.php";
     /**
      * TODO: � compl�ter
      */
+    public function getAllTeachers(){
+        $query = "SELECT * FROM t_teacher";
+        $req = $this->queryPrepareExecute($query,null);
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
+    
+    /**
+     * TODO: � compl�ter
+     */
+    public function getAllStudents(){
+        $query = "SELECT * FROM t_student";
+        $req = $this->queryPrepareExecute($query,null);
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
+
+    /**
+     * TODO: � compl�ter
+     */
     public function getProjectById(int $idProject){
         $query = "SELECT * FROM t_project WHERE idProject=" . $idProject;
         $req = $this->queryPrepareExecute($query,null);

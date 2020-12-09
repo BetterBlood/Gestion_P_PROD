@@ -1,9 +1,19 @@
 <?php
-    include "../model/Database.php";
+  include "../model/Database.php";
+  include "../controller/functions.php";
+  session_start();
 
-    $database = new Database();
+  $database = new Database();
+  $project = $database->getProjectById($_GET["idProject"]);
+  $teachers = $database->getAllTeachers();
+  $students = $database->getAllStudents();
 
-    $project = $database->getProjectById($_GET["idProject"]);
+  if (isset($_POST["login"])) {
+      login("details.php?idProject=" . $project["idProject"], $teachers, $students);
+  }
+  if (isset($_POST["logout"])) {
+      logout("details.php?idProject=" . $project["idProject"]);
+  }
 ?>
 
 <!doctype html>
@@ -38,6 +48,11 @@
         border: 1px;
       }
 
+      .jumbotron {
+        margin-top: 1rem;
+        background-color: #b4f8f8;
+      }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -45,7 +60,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
+
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
@@ -63,10 +78,9 @@
         <a class="nav-link" href="printersList.php">Ajouter un projet<span class="sr-only"></span></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" method="post"  action="#">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchValue">
-      <button class="btn btn-dark my-2 my-sm-0" name="search" type="submit">Search</button>
-    </form>
+    <?php
+      displayLoginSection();
+    ?>
   </div>
 </nav>
 
@@ -103,7 +117,7 @@
   </div>
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron" style="background-color: #b4f8f8;">
+  <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">Détails du projet</h1>
       <div style="padding: 30px;">
@@ -176,6 +190,7 @@
   </div> <!-- /container -->
 
 </main>
+        </body>
 
 <footer class="container">
   <p>&copy; ETML, 2020</p>
