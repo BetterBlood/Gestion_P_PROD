@@ -1,11 +1,11 @@
-<?php
+<?php/*
     include "../model/Database.php";
 
     $database = new Database();
 
     $project = $database->getProjectById($_GET["idProject"]);
 ?>
-
+<!--
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,7 +15,6 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
 
-    <!-- Bootstrap core CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -44,7 +43,6 @@
         }
       }
     </style>
-    <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
   </head>
   <body>
@@ -72,7 +70,6 @@
 
 <main role="main">
 
-  <!-- Modal -->
   <div class="modal fade" id="connection" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -83,7 +80,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="home.php" method="post">
+          <form action="../view/homePage.php" method="post">
             <div class="form-group">
               <label for="exampleFormControlInputFir">Username</label>
               <input type="text" class="form-control" id="exampleFormControlInputFir" name="username">
@@ -102,12 +99,11 @@
     </div>
   </div>
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron" style="background-color: #b4f8f8;">
     <div class="container">
       <h1 class="display-3">Détails du projet</h1>
       <div style="padding: 30px;">
-        <?php
+        <?php/*
           $completeNameInitiator = ($database->getTeacherById($project["idInitiator"])["teaFirstName"]) . ' ' . ($database->getTeacherById($project["idInitiator"])["teaLastName"]) . '</p>';
           if(isset($project["idCoordinator"]))
           {
@@ -147,7 +143,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="home.php" method="post">
+          <form action="../view/homePage.php" method="post">
             <div class="form-group">
               <label for="exampleFormControlInputFir">Enseignant coordinateur</label>
               <input type="text" class="form-control" id="exampleFormControlInputFir" name="username">
@@ -167,13 +163,12 @@
   </div>
 
   <div class="container">
-    <!-- Example row of columns -->
     <div class="row">
       <img src="../Ressources/images/p1.jpg" alt="">       
     </div>
     <hr>
 
-  </div> <!-- /container -->
+  </div>
 
 </main>
 
@@ -183,4 +178,4 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</html>
+</html>-->
