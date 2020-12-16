@@ -84,7 +84,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Accueil <span class="sr-only"></span></a>
+        <a class="nav-link" href="homePage.php">Accueil <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="printersList.php">Ajouter un projet<span class="sr-only"></span></a>
