@@ -85,7 +85,7 @@
                             <a class="nav-link" href="../../index.php">Accueil <span class="sr-only"></span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="..\view\addProject.html">Ajouter un projet<span class="sr-only"></span></a>
+                            <a class="nav-link" href="../view/addProject.html">Ajouter un projet<span class="sr-only"></span></a>
                         </li>
                     </ul>
 
@@ -107,12 +107,12 @@
                 <table class="table table-hover table-primary table-striped bg-white ">
                     <thead class="table-light" >
                         <tr onclick="location.href='#'">
-                            <th scope="col">#</th>
-                            <th scope="col">Date de début</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Enseignants [Initiateur, Coordinateur]</th>
-                            <th scope="col">Élèves</th>
+                            <th class="text-center align-middle" scope="col">#</th>
+                            <th class="text-center align-middle" scope="col">Date de début</th>
+                            <th class="text-center align-middle" scope="col">Nom</th>
+                            <th class="text-center align-middle" scope="col">Description</th>
+                            <th class="text-center align-middle" scope="col">Enseignants [Initiateur, Coordinateur]</th>
+                            <th class="text-center align-middle" scope="col">Élèves</th>
                         </tr>
                     </thead>
                     <tbody >
@@ -181,12 +181,12 @@
                 </table>
             </div>
         </div>
-
+        <footer>
+            <p class="d-flex justify-content-center">&copy; ETML, 2020</p>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        </footer>
     </body>
-    <footer>
-        <p class="text-center">&copy; ETML, 2020</p>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    </footer>
+    
 </html>
