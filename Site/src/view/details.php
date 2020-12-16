@@ -14,10 +14,11 @@
   if (isset($_POST["logout"])) {
       logout("details.php?idProject=" . $project["idProject"]);
   }
+
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -72,7 +73,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Accueil <span class="sr-only"></span></a>
+        <a class="nav-link" href="../../index.php?">Accueil <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="printersList.php">Ajouter un projet<span class="sr-only"></span></a>
