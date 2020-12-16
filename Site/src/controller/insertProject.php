@@ -16,5 +16,5 @@
     $database = new Database();
     $database->insertProject($proName, $proDescription, $idInitiator);
 
-    header('Location: http://localhost:8080/Gestion_P_PROD/Site/src/view/homePage.php')
+    header('Location: ../view/homePage.php')
 ?>
