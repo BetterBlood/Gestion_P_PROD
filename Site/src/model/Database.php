@@ -81,6 +81,40 @@ include "config.ini.php";
     public function getAllProjects(){
         $query = "SELECT * FROM t_project";
         $req = $this->queryPrepareExecute($query,null);
+        $projects = $this->formatData($req);
+        $this->unsetData($req);
+        return $projects;
+    }
+
+    // public function getAllProjectsJoinTeacherJoinStudent()
+    // {
+    //     //$query = "SELECT * FROM t_project LEFT JOIN t_teacher ON t_project.idInitiator = t_teacher.idTeacher LEFT JOIN t_teacher ON t_project.idCoordinator = t_teacher.idTeacher";
+    //     $query = "SELECT t_project.idProject, t_teacher.teaFirstName as 'test' FROM t_project LEFT JOIN t_teacher ON t_project.idInitiator = t_teacher.idTeacher 
+    //     UNION ALL SELECT t_project.idProject, t_teacher.teaFirstName as 'test2' FROM t_project LEFT JOIN t_teacher ON t_project.idCoordinator = t_teacher.idTeacher";
+
+    //     $req = $this->queryPrepareExecute($query,null);
+    //     $projects = $this->formatData($req);
+    //     $this->unsetData($req);
+    //     return $projects;
+    // }
+
+    /**
+     * TODO: � compl�ter
+     */
+    public function getAllTeachers(){
+        $query = "SELECT * FROM t_teacher";
+        $req = $this->queryPrepareExecute($query,null);
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
+    
+    /**
+     * TODO: � compl�ter
+     */
+    public function getAllStudents(){
+        $query = "SELECT * FROM t_student";
+        $req = $this->queryPrepareExecute($query,null);
         $result = $this->formatData($req);
         $this->unsetData($req);
         return $result;
@@ -96,6 +130,8 @@ include "config.ini.php";
         $this->unsetData($req);
         return $result[0];
     }
+
+
     
     /**
      * TODO: � compl�ter
@@ -204,6 +240,24 @@ include "config.ini.php";
         $req = $this->queryPrepareExecute($query,null);
         $result = $this->formatData($req);
         return $result;
+    }
+
+    public function getStudentById($id)
+    {
+        $query = 'SELECT * FROM t_student WHERE  idStudent =' . $id;
+        $req = $this->queryPrepareExecute($query,null);
+        $student = $this->formatData($req);
+        $this->unsetData($req);
+        return $student[0];
+    }
+
+    public function getStudentsByProjectId($id)
+    {
+        $query = 'SELECT * FROM t_belong LEFT JOIN t_student ON t_belong.idStudent = t_student.idStudent WHERE t_belong.idProject = '. $id;
+        $req = $this->queryPrepareExecute($query,null);
+        $students = $this->formatData($req);
+        $this->unsetData($req);
+        return $students;
     }
 
     // + tous les autres m�thodes dont vous aurez besoin pour la suite (insertTeacher ... etc)
