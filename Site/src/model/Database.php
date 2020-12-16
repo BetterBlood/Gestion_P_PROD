@@ -124,7 +124,15 @@ include "config.ini.php";
      * TODO: � compl�ter
      */
     public function getSomeStudents($request){
-        $query = "SELECT * FROM t_student WHERE (CONCAT(stuFirstName, ' ', stuLastName)) LIKE '%" . $request . "%'";
+        $query = "SELECT * FROM t_student WHERE (CONCAT(stuFirstName, ' ', stuLastName, ' ', stuClass)) LIKE '%" . $request . "%'";
+        $req = $this->queryPrepareExecute($query,null);
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
+
+    public function getStudentsBelongingToProject($id){
+        $query = "SELECT * FROM t_belong NATURAL JOIN t_student WHERE idProject=" . $id;
         $req = $this->queryPrepareExecute($query,null);
         $result = $this->formatData($req);
         $this->unsetData($req);
@@ -225,7 +233,26 @@ include "config.ini.php";
         );
         $req = $this->queryPrepareExecute($query,$values);
         $this->unsetData($req);
-        header("location: index.php");
+        //header("location: index.php");
+    }
+
+    public function insertStudentIntoProject($idProject, $idStudent){
+        $query = "INSERT INTO t_belong (idProject, idStudent) VALUES (:idPro, :idStu)";
+        $values = array(
+            1=> array(
+                'marker' => ':idPro',
+                'var' => $idProject,
+                'type' => PDO::PARAM_INT
+            ),
+            2=> array(
+                'marker' => ':idStu',
+                'var' => $idStudent,
+                'type' => PDO::PARAM_INT
+            )
+        );
+        $req = $this->queryPrepareExecute($query,$values);
+        $this->unsetData($req);
+        //header("location: index.php");
     }
 
     public function deleteTeacher($id){
@@ -235,12 +262,11 @@ include "config.ini.php";
         header("location: index.php");
     }
 
-    public function modifyTeacher($id, $gender, $nickname, $origin, $section){
-        $query = 'UPDATE t_teacher SET teaGender="' . $gender . '", teaNickname="' . $nickname . '", teaNicknameOrigin="' . $origin . '", idSection=' . $section . ' WHERE idTeacher =' . $id;
-
+    public function updateCoordinator($idTeacher,$idProject){
+        $query = 'UPDATE t_project SET idCoordinator="' . $idTeacher . '" WHERE idProject =' . $idProject;
         $req = $this->queryPrepareExecute($query,null);
         $this->unsetData($req);
-        header("location: index.php");
+        //header("location: index.php");
     }
 
     /**

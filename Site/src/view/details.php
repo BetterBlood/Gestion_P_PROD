@@ -114,7 +114,8 @@
           }
           if(isset($project["idCoordinator"]))
           {
-            echo '<strong>Eleves participant au projet : </strong><p> Jeremiah Steiner, Camila Djabali, Pyjus</p>';
+            echo '<strong>Eleves participant au projet : </strong>';
+            echo '<p> Jeremiah Steiner, Camila Djabali, Pyjus</p>';
           } else {
             echo '<strong>Projet attribué à : </strong><p>Pas d\'éleves assigné pour l\'instant</p>';
           }
