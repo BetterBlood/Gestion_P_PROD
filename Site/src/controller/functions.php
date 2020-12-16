@@ -34,7 +34,7 @@ function login($pageName,$teachers,$students)
 {
   foreach($teachers as $teacher)
   {
-    if($_POST["username"] == $teacher["teaUserName"]) // && password_verify($_POST["password"], $user["usePassword"]))
+    if($_POST["username"] == $teacher["teaUserName"] && password_verify($_POST["password"], $teacher["teaPassword"]))
     {
         $_SESSION["isConnected"] = 2;
         $_SESSION["username"] = $_POST["username"];
@@ -43,7 +43,7 @@ function login($pageName,$teachers,$students)
   }
   foreach($students as $student)
   {
-    if($_POST["username"] == $student["stuUserName"]) // && password_verify($_POST["password"], $user["usePassword"]))
+    if($_POST["username"] == $student["stuUserName"] && password_verify($_POST["password"], $student["stuPassword"]))
     {
         $_SESSION["isConnected"] = 1;
         $_SESSION["username"] = $_POST["username"];
@@ -56,5 +56,10 @@ function logout($pageName)
 {
     session_destroy();
     header("location: " . $pageName);
+}
+
+function makeFullName($firstname,$lastname)
+{
+  return $firstname . ' ' . $lastname;
 }
 ?>

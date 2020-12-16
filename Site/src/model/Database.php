@@ -123,6 +123,17 @@ include "config.ini.php";
     /**
      * TODO: � compl�ter
      */
+    public function getSomeStudents($request){
+        $query = "SELECT * FROM t_student WHERE (CONCAT(stuFirstName, ' ', stuLastName)) LIKE '%" . $request . "%'";
+        $req = $this->queryPrepareExecute($query,null);
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
+
+    /**
+     * TODO: � compl�ter
+     */
     public function getProjectById(int $idProject){
         $query = "SELECT * FROM t_project WHERE idProject=" . $idProject;
         $req = $this->queryPrepareExecute($query,null);
