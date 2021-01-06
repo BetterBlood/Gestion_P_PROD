@@ -17,6 +17,10 @@
 
 <body>
 
+<?php
+  session_start();
+?>
+
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
         <a class="navbar-brand" href="homePage.php"><strong>ETML HyperProject</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
