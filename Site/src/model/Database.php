@@ -75,12 +75,53 @@ include "config.ini.php";
     /**
      * TODO: � compl�ter
      */
-    public function getAllProjects(){
-        $query = "SELECT * FROM t_project";
+    public function getAllActiveProjects(){
+        $query = "SELECT * FROM t_project  WHERE proArchive = 0";
         $req = $this->queryPrepareExecute($query,null);
         $projects = $this->formatData($req);
         $this->unsetData($req);
         return $projects;
+    }
+
+    public function getAllArchivedProjects()
+    {
+        $query = "SELECT * FROM t_project WHERE proArchive = 1";
+        $req = $this->queryPrepareExecute($query,null);
+        $projects = $this->formatData($req);
+        $this->unsetData($req);
+        return $projects;
+    }
+
+    public function archiveProjectById($idProject, $archive = true)
+    {
+        if ($archive)
+        {
+            $query = 'UPDATE t_project SET proArchive="' . 1 . '" WHERE idProject =' . $idProject;
+        }
+        else 
+        {
+            $query = 'UPDATE t_project SET proArchive="' . 0 . '" WHERE idProject =' . $idProject;
+        }
+        
+        $req = $this->queryPrepareExecute($query,null);
+        $this->unsetData($req);
+    }
+
+    public function projectExists($id)
+    {
+        $req = $this->queryPrepareExecute('SELECT * FROM t_project', null);// appeler la méthode pour executer la requète
+
+        $projects = $this->formatData($req);// appeler la méthode pour avoir le résultat sous forme de tableau
+
+        foreach($projects as $project)
+        {
+            if ($project["idProject"] == $id)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // public function getAllProjectsJoinTeacherJoinStudent()
@@ -259,7 +300,7 @@ include "config.ini.php";
         header("location: index.php");
     }
 
-    public function updateCoordinator($idTeacher,$idProject){
+    public function updateCoordinator($idTeacher, $idProject){
         $query = 'UPDATE t_project SET idCoordinator="' . $idTeacher . '" WHERE idProject =' . $idProject;
         $req = $this->queryPrepareExecute($query,null);
         $this->unsetData($req);

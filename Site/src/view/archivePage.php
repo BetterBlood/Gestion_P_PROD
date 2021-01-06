@@ -4,8 +4,8 @@
 
     $database = new Database();
 
-    $projects = $database->getAllProjects(); //TODO : voir ptetre pour faire une limit et du coup plusieurs pages (virtuelle)
-    //var_dump($projects);
+    
+    
     include "../controller/functions.php";
     
 
@@ -20,7 +20,12 @@
         logout("homePage.php");
     }
 
+    if (isset($_GET["id"]) && $database->projectExists($_GET["id"]))
+    {
+        $database->archiveProjectById($_GET["id"], $archive = false);
+    }
 
+    $projects = $database->getAllArchivedProjects(); //TODO : voir ptetre pour faire une limit et du coup plusieurs pages (virtuelle) //var_dump($projects);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -38,7 +43,6 @@
     </head>
 
     <body>
-        
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
                 <a class="navbar-brand" href="../../index.php"><strong>ETML HyperProject</strong></a>
@@ -92,6 +96,7 @@
                             <th class="text-center align-middle" scope="col">Description</th>
                             <th class="text-center align-middle" scope="col">Enseignants [Initiateur, Coordinateur]</th>
                             <th class="text-center align-middle" scope="col">Élèves</th>
+                            <th class="text-center align-middle" scope="col">UnArchive</th>
                         </tr>
                     </thead>
                     <tbody >
@@ -152,6 +157,7 @@
 
                                     
                                 echo '</td>';
+                                echo '<td><a class="btn btn-warning" href="..\view\archivePage.php?id=' . $project["idProject"] . '">unArchive!</a></td>';
                                 echo '</tr>';
                             }
                         ?>
