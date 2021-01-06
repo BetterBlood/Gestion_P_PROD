@@ -9,15 +9,19 @@
   $students = $database->getAllStudents();
 
   if (isset($_POST["login"])) {
+    if(isset($_POST["username"]) && isset($_POST["password"]))
+    {
       login("details.php?idProject=" . $project["idProject"], $teachers, $students);
+    }
   }
   if (isset($_POST["logout"])) {
       logout("details.php?idProject=" . $project["idProject"]);
   }
+
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -64,7 +68,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
-  <a class="navbar-brand" href="#"><strong>ETML HyperProject</strong></a>
+  <a class="navbar-brand" href="../view/homePage.php"><strong>ETML HyperProject</strong></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -72,10 +76,10 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Accueil <span class="sr-only"></span></a>
+        <a class="nav-link" href="../view/homePage.php">Accueil <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="printersList.php">Ajouter un projet<span class="sr-only"></span></a>
+        <a class="nav-link" href="../view/addProject.html">Ajouter un projet<span class="sr-only"></span></a>
       </li>
     </ul>
     <?php
@@ -86,46 +90,17 @@
 
 <main role="main">
 
-  <!-- Modal -->
-  <div class="modal fade" id="connection" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Se connecter</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="home.php" method="post">
-            <div class="form-group">
-              <label for="exampleFormControlInputFir">Username</label>
-              <input type="text" class="form-control" id="exampleFormControlInputFir" name="username">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInputLast">Password</label>
-              <input type="password" class="form-control" id="exampleFormControlInputLast" name="password">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-              <input type="submit" name="login" class="btn btn-primary" value="Connexion">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">Détails du projet</h1>
       <div style="padding: 30px;">
+
         <?php
-          $completeNameInitiator = ($database->getTeacherById($project["idInitiator"])["teaFirstName"]) . ' ' . ($database->getTeacherById($project["idInitiator"])["teaLastName"]) . '</p>';
+          $completeNameInitiator = makeFullName($database->getTeacherById($project["idInitiator"])["teaFirstName"], $database->getTeacherById($project["idInitiator"])["teaLastName"]);
           if(isset($project["idCoordinator"]))
           {
-            $completeNameCoordinator = ($database->getTeacherById($project["idCoordinator"])["teaFirstName"]) . ' ' . ($database->getTeacherById($project["idCoordinator"])["teaLastName"]) . '</p>';
+            $completeNameCoordinator = makeFullName($database->getTeacherById($project["idCoordinator"])["teaFirstName"], $database->getTeacherById($project["idCoordinator"])["teaLastName"]);
           }
           echo '<strong>Nom du projet : </strong><p>' . $project["proName"] . '</p>';
           echo '<strong>Description du projet : </strong><p>' . $project["proDescription"] . '</p>';
@@ -139,12 +114,13 @@
           }
           if(isset($project["idCoordinator"]))
           {
-            echo '<strong>Eleves participant au projet : </strong><p> Jeremiah Steiner, Camila Djabali, Pyjus</p>';
+            echo '<strong>Eleves participant au projet : </strong>';
+            echo '<p> Jeremiah Steiner, Camila Djabali, Pyjus</p>';
           } else {
             echo '<strong>Projet attribué à : </strong><p>Pas d\'éleves assigné pour l\'instant</p>';
           }
+          echo '<a href="modifyProject.php?idProject=' . $_GET["idProject"] . '" class="bt btn-info btn-lg">Modifier le projet</a>';
         ?>
-          <button class="bt btn-info btn-lg" data-toggle="modal" data-target="#modifyProject">Modifier le projet</button>
       </div>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
       </div>
@@ -167,8 +143,15 @@
               <input type="text" class="form-control" id="exampleFormControlInputFir" name="username">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInputLast">Liste des éleves</label>
-              <input type="password" class="form-control" id="exampleFormControlInputLast" name="password">
+              <label for="studentList">Liste des éleves</label>
+              <select name="student" id="studentList">
+                <?php
+                  foreach($students as $student)
+                  {
+                    echo '<option value="' . $student["idStudent"] . '">' . makeFullName($student["stuFirstName"], $student["stuLastName"]) . '</option>';
+                  }
+                ?>
+              </select>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
