@@ -93,10 +93,10 @@
                     ?>
                 </div>
                 
-                <div class="bg-secondary pr-1 pl-1 pb-1">
-                    <table class="table table-hover table-primary table-striped bg-white">
+                <div class="bg-secondary pr-1 pl-1 pb-1 pt-1">
+                    <table id="tableList" class="table table-hover table-primary table-striped bg-white">
                         <thead class="table-light" >
-                            <tr onclick="location.href='#'">
+                            <tr onclick="location.href='#tableList'">
                                 <th class="text-center align-middle" scope="col">#</th>
                                 <th class="text-center align-middle" scope="col">Date de début</th>
                                 <th class="text-center align-middle" scope="col">Nom</th>
