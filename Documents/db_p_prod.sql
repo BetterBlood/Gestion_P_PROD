@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 -- Base de données :  `db_p_prod`
 --
 
+create database db_p_prod;
+use db_p_prod;
+
 -- --------------------------------------------------------
 
 --
