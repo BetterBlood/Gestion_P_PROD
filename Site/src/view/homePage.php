@@ -86,7 +86,7 @@
                         if (array_key_exists("isConnected", $_SESSION) && $_SESSION["isConnected"] >= 2)
                         {
                             ?>
-                                <a class="btn btn-light mb-2 mr-2 mt-2" href="..\view\addProject.html">Ajouter un projet</a>
+                                <a class="btn btn-light mb-2 mr-2 mt-2" href="..\view\addProject.php">Ajouter un projet</a>
                                 <a class="btn btn-light mb-2 mr-2 mt-2" href="..\view\archivePage.php">Projets archivés</a>
                             <?php
                         }
