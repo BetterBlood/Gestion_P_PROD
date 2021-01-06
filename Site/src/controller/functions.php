@@ -1,9 +1,9 @@
 <?php
-/**
- * Authors : Julien Steiner Miranda
- * Date : 02.11.2020
- * Description : fonctions utilitaires
- */
+/** 
+ * Auteurs : Julien Leresche, Jeremiah Steiner et Ricardo Delgado Miranda
+ * Date : 02.12.2020
+ * Description : Fonctions du site
+*/
 
 function displayLoginSection()
 {
@@ -37,6 +37,7 @@ function login($pageName,$teachers,$students)
     if($_POST["username"] == $teacher["teaUserName"] && password_verify($_POST["password"], $teacher["teaPassword"]))
     {
         $_SESSION["isConnected"] = 2;
+        $_SESSION["idUser"] = $teacher["idTeacher"];
         $_SESSION["username"] = $_POST["username"];
         header("location: " . $pageName);
     }
@@ -46,6 +47,7 @@ function login($pageName,$teachers,$students)
     if($_POST["username"] == $student["stuUserName"] && password_verify($_POST["password"], $student["stuPassword"]))
     {
         $_SESSION["isConnected"] = 1;
+        $_SESSION["idUser"] = $student["idStudent"];
         $_SESSION["username"] = $_POST["username"];
         header("location: " . $pageName);
     }
