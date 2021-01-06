@@ -1,4 +1,10 @@
 <?php
+/** 
+ * Auteurs : Julien Leresche, Jeremiah Steiner et Ricardo Delgado Miranda
+ * Date : 02.12.2020
+ * Description : Page d'accueil du site
+*/
+
     session_start();
     include "../model/Database.php";
 
@@ -30,44 +36,11 @@
         <title>ETML HyperProject</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
-
+        <link rel="stylesheet" href="../ressources/css/style.css">
         <!-- Bootstrap core CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-        <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        table {
-            border: 1px blue;
-        }
-
-        .us {
-            border: 1px;
-        }
-
-        .jumbotron {
-            margin-top: 1rem;
-            background-color: #b4f8f8;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-            }
-        }
-        </style>
-        <!-- Custom styles for this template -->
-
-
     </head>
 
     <body>
@@ -85,7 +58,7 @@
                             <a class="nav-link" href="../../index.php">Accueil <span class="sr-only"></span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="../view/addProject.html">Ajouter un projet<span class="sr-only"></span></a>
+                            <a class="nav-link" href="../view/addProject.php">Ajouter un projet<span class="sr-only"></span></a>
                         </li>
                     </ul>
 
@@ -105,7 +78,7 @@
                         if (array_key_exists("isConnected", $_SESSION) && $_SESSION["isConnected"] >= 2)
                         {
                             ?>
-                                <a class="btn btn-success mb-2 mr-2" href="..\view\addProject.html">Ajouter un projet</a>
+                                <a class="btn btn-success mb-2 mr-2" href="..\view\addProject.php">Ajouter un projet</a>
                                 <a class="btn btn-danger mb-2 mr-2" href="..\view\archivePage.php">Projets archivés</a>
                             <?php
                         }

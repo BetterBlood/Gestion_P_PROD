@@ -1,4 +1,10 @@
 <?php
+/** 
+ * Auteurs : Julien Leresche, Jeremiah Steiner et Ricardo Delgado Miranda
+ * Date : 09.12.2020
+ * Description : Page permettant de modifier les projets
+*/
+
   include "../model/Database.php";
   include "../controller/functions.php";
   session_start();
@@ -54,44 +60,13 @@
     <title>ETML HyperProject</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
-
+    <link rel="stylesheet" href="../ressources/css/style.css">
     <!-- Bootstrap core CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      table {
-        border: 1px blue;
-      }
-
-      .us {
-        border: 1px;
-      }
-
-      .jumbotron {
-        margin-top: 1rem;
-        background-color: #b4f8f8;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <!-- Custom styles for this template -->
-
   </head>
+  
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
   <a class="navbar-brand" href="#"><strong>ETML HyperProject</strong></a>

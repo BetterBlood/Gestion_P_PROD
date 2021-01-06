@@ -1,0 +1,33 @@
+/** 
+ * Auteurs : Julien Leresche, Jeremiah Steiner et Ricardo Delgado Miranda
+ * Date : 06.01.2021
+ * Description : Page de style du site
+*/
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+table {
+    border: 1px blue;
+}
+
+.us {
+    border: 1px;
+}
+
+.jumbotron {
+    margin-top: 1rem;
+    background-color: #b4f8f8;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}

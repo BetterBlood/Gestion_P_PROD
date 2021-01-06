@@ -1,13 +1,10 @@
 <?php
 
-/**
- * 
- * TODO : � compl�ter
- * 
- * Auteur : 
- * Date : 
- * Description :
- */
+/** 
+ * Auteurs : Julien Leresche, Jeremiah Steiner et Ricardo Delgado Miranda
+ * Date : 02.12.2020
+ * Description : Page modèle de la base de données
+*/
 
 include "config.ini.php";
 
