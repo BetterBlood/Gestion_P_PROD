@@ -11,7 +11,7 @@
     $idInitiator = $_SESSION["idUser"];
 
     // proName
-    if (!empty($_POST["proName"]) && preg_match("#^[A-Za-z-'\p{L}éüèöäà ]*$#", $_POST["proName"])) {
+    if (!empty($_POST["proName"]) && preg_match("#^[A-Za-z0-9-'\p{L}éüèöäà ]*$#", $_POST["proName"])) {
         $proName = htmlspecialchars($_POST['proName']);
     } else {
         $error = "Le prénom doit être renseigné sans nombres ni caractères spéciaux !";
