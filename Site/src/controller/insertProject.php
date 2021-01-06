@@ -1,13 +1,32 @@
 <?php
+/** 
+ * Auteurs : Julien Leresche, Jeremiah Steiner et Ricardo Delgado Miranda
+ * Date : 02.12.2020
+ * Description : Page permettant d'insérer un projet à la db
+*/
+
     include '../model/Database.php';
+    session_start();
 
-    //controler tous les champs
+    $idInitiator = $_SESSION["idUser"];
 
-    var_dump($_POST);
-    //$firstName = $_POST['firstName'];
-    $idInitiator = 1; // TODO : insérer par la session
-    $proName = $_POST['proName'];
-    $proDescription = $_POST['proDescription'];
+    // proName
+    if (!empty($_POST["proName"]) && preg_match("#^[A-Za-z0-9-'\p{L}éüèöäà ]*$#", $_POST["proName"])) {
+        $proName = htmlspecialchars($_POST['proName']);
+    } else {
+        $error = "Le prénom doit être renseigné sans nombres ni caractères spéciaux !";
+        echo $error;
+        die();
+    }
+
+    // proDescription
+    if (!empty($_POST["proDescription"]) && preg_match("#^[A-Za-z0-9-'\p{L}éüèöäà ]*$#", $_POST["proDescription"])) {
+        $proDescription = htmlspecialchars($_POST['proDescription']);
+    } else {
+        $error = "La description du projet dois être renseignée sans caractères spéciaux !";
+        echo $error;
+        die();
+    }
 
     echo $proName;
     echo $proDescription;
@@ -16,5 +35,5 @@
     $database = new Database();
     $database->insertProject($proName, $proDescription, $idInitiator);
 
-    header('Location: http://localhost:8080/Gestion_P_PROD/Site/src/view/homePage.php')
+    header('Location: ../view/homePage.php')
 ?>
