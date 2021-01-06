@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 06 Janvier 2021 à 13:49
+-- Généré le :  Mer 06 Janvier 2021 à 13:57
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -19,9 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `db_p_prod`
 --
-
-create database db_P_PROD;
-use db_P_PROD;
 
 -- --------------------------------------------------------
 
@@ -39,7 +36,9 @@ CREATE TABLE `t_belong` (
 --
 
 INSERT INTO `t_belong` (`idProject`, `idStudent`) VALUES
-(1, 1);
+(2, 1),
+(2, 2),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -67,6 +66,7 @@ CREATE TABLE `t_project` (
   `proDescription` varchar(200) NOT NULL,
   `proStartingDate` date NOT NULL,
   `proEndingDate` date NOT NULL,
+  `proArchive` tinyint(1) NOT NULL DEFAULT '0',
   `idCoordinator` int(11) DEFAULT NULL,
   `idInitiator` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -75,10 +75,14 @@ CREATE TABLE `t_project` (
 -- Contenu de la table `t_project`
 --
 
-INSERT INTO `t_project` (`idProject`, `proName`, `proDescription`, `proStartingDate`, `proEndingDate`, `idCoordinator`, `idInitiator`) VALUES
-(1, 'Projet 1', 'Description du projet 1', '0000-00-00', '0000-00-00', NULL, 1),
-(2, 'Projet 2', 'Description du projet 2', '0000-00-00', '0000-00-00', NULL, 1),
-(3, 'Projet 3', 'Description du projet 3', '0000-00-00', '0000-00-00', NULL, 1);
+INSERT INTO `t_project` (`idProject`, `proName`, `proDescription`, `proStartingDate`, `proEndingDate`, `proArchive`, `idCoordinator`, `idInitiator`) VALUES
+(2, '1', '1', '2020-12-01', '2020-12-31', 1, 1, 2),
+(3, 'nom du projet', 'une description', '2020-12-01', '2020-12-31', 1, NULL, 1),
+(4, 'projet 3', 'hfhrthrthrtrth', '2020-12-01', '2020-12-05', 0, NULL, 2),
+(5, 'rtjhthrt', 'rezretretete', '0000-00-00', '0000-00-00', 0, NULL, 1),
+(6, 'Simon', 'GUGISBEGRGEGR GEGSGEDRGES GGUGISBE GRGEGRGEGS GEDRGES GGUGISBEGRGE', '0000-00-00', '0000-00-00', 0, NULL, 1),
+(7, 'FSFW', 'EFWEFWEF', '0000-00-00', '0000-00-00', 0, NULL, 1),
+(8, 'onmi', 'ubh', '0000-00-00', '0000-00-00', 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -91,15 +95,19 @@ CREATE TABLE `t_student` (
   `stuFirstName` varchar(50) NOT NULL,
   `stuLastName` varchar(50) NOT NULL,
   `stuUserName` varchar(50) NOT NULL,
-  `stuPassword` varchar(200) NOT NULL
+  `stuPassword` varchar(200) NOT NULL,
+  `stuClass` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `t_student`
 --
 
-INSERT INTO `t_student` (`idStudent`, `stuFirstName`, `stuLastName`, `stuUserName`, `stuPassword`) VALUES
-(1, 'Student', 'Test', 'STT', '$2y$10$UqpPCefjmclTg7X7VCr/Ke/n3o58d9VJM50DWqtrIXp8XJD3R4/8G');
+INSERT INTO `t_student` (`idStudent`, `stuFirstName`, `stuLastName`, `stuUserName`, `stuPassword`, `stuClass`) VALUES
+(1, 'studprénom1', 'studnom1', 'studusername1', 'a', 'FIN1'),
+(2, 'studprénom2', 'studnom2', 'studusername2', 'b', 'FIN1'),
+(3, 'test', 'test', 'test', 'test', 'FIN1'),
+(4, 'test2', 'test2', 'test2', 'test2', 'FIN2');
 
 -- --------------------------------------------------------
 
@@ -131,7 +139,8 @@ CREATE TABLE `t_teacher` (
 --
 
 INSERT INTO `t_teacher` (`idTeacher`, `teaFirstName`, `teaLastName`, `teaUserName`, `teaPassword`) VALUES
-(1, 'Enseignant', 'Test', 'ETT', '$2y$10$UqpPCefjmclTg7X7VCr/Ke/n3o58d9VJM50DWqtrIXp8XJD3R4/8G');
+(1, 'prénom1', 'nom1', 'username1', '$2y$10$UqpPCefjmclTg7X7VCr/Ke/n3o58d9VJM50DWqtrIXp8XJD3R4/8G'),
+(2, 'prénom2', 'nom2', 'username2', '222222');
 
 --
 -- Index pour les tables exportées
@@ -198,17 +207,17 @@ ALTER TABLE `t_comment`
 -- AUTO_INCREMENT pour la table `t_project`
 --
 ALTER TABLE `t_project`
-  MODIFY `idProject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idProject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `t_student`
 --
 ALTER TABLE `t_student`
-  MODIFY `idStudent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idStudent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `t_teacher`
 --
 ALTER TABLE `t_teacher`
-  MODIFY `idTeacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idTeacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
