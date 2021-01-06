@@ -4,8 +4,8 @@
 
     $database = new Database();
 
-    $projects = $database->getAllProjects(); //TODO : voir ptetre pour faire une limit et du coup plusieurs pages (virtuelle)
-    //var_dump($projects);
+    
+    
     include "../controller/functions.php";
     
 
@@ -20,9 +20,18 @@
         logout("homePage.php");
     }
 
+    if (isset($_GET["id"]) && $database->projectExists($_GET["id"]) && isset($_SESSION["isConnected"]) && $_SESSION["isConnected"] == 2)
+    {
+        $database->archiveProjectById($_GET["id"]);
+    }
+    
+    $projects = $database->getAllActiveProjects(); //TODO : voir ptetre pour faire une limit et du coup plusieurs pages (virtuelle) //var_dump($projects);
+
 
 ?>
+
 <!doctype html>
+
 <html lang="fr">
     <head>
     <meta charset="utf-8">
@@ -71,7 +80,6 @@
     </head>
 
     <body>
-        
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
                 <a class="navbar-brand" href="../../index.php"><strong>ETML HyperProject</strong></a>
@@ -109,13 +117,8 @@
                                 <a class="btn btn-danger mb-2 mr-2" href="..\view\archivePage.php">Projets archivés</a>
                             <?php
                         }
-                    
                     ?>
-                    
-
                 </div>
-                
-
             
                 <table class="table table-hover table-primary table-striped bg-white ">
                     <thead class="table-light" >
@@ -126,6 +129,7 @@
                             <th class="text-center align-middle" scope="col">Description</th>
                             <th class="text-center align-middle" scope="col">Enseignants [Initiateur, Coordinateur]</th>
                             <th class="text-center align-middle" scope="col">Élèves</th>
+                            <th class="text-center align-middle" scope="col">Archive</th>
                         </tr>
                     </thead>
                     <tbody >
@@ -186,6 +190,8 @@
 
                                     
                                 echo '</td>';
+
+                                echo '<td><a class="btn btn-warning" href="..\view\homePage.php?id=' . $project["idProject"] . '">archiver</a></td>';
                                 echo '</tr>';
                             }
                         ?>
