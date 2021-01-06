@@ -4,6 +4,24 @@
   session_start();
 
   $database = new Database();
+
+  if(isset($_POST["addTeacher"]))
+  {
+    $database->updateCoordinator($_POST["teacher"],$_GET["idProject"]);
+  }
+
+  if(isset($_POST["addStudent"]))
+  {
+    try 
+    {
+      $database->insertStudentIntoProject($_GET["idProject"],$_POST["student"]);
+    } 
+    catch(Exception $e)
+    {
+    }
+  }
+
+  $studentsInProject = $database->getStudentsBelongingToProject($_GET["idProject"]);
   $project = $database->getProjectById($_GET["idProject"]);
 
   if (isset($_POST["login"])) {
@@ -103,8 +121,9 @@
     <div class="container">
       <h1 class="display-3">Modifier le projet</h1>
       <div style="padding: 30px;">
-      <form action="" method="post">
-      </form>
+        <form action="" method="post">
+        </form>
+
         <?php
           echo '<form class="form-inline my-2 my-lg-0" action="modifyProject.php?idProject=' . $_GET["idProject"] . '" method="post">
                   <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchValue">
@@ -125,36 +144,50 @@
             echo '<strong>Projet coordiné par : </strong><p>Pas de coordinateur pour l\'instant</p>';
           }
         ?>
-        <div class="form-group">
-          <label for="teacherList">Liste des enseignants</label>
-          <select name="teacher" id="teacherList">
-            <?php
-              foreach($teachers as $teacher)
-              {
-                echo '<option value="' . $teacher["idTeacher"] . '">' . makeFullName($teacher["teaFirstName"], $teacher["teaLastName"]) . '</option>';
-              }
-            ?>
-          </select>
-        </div>       
+
+        <form action="modifyProject.php?idProject=<?php echo $_GET["idProject"]; ?>" method="post">
+          <div class="form-group">
+            <label for="teacherList">Liste des enseignants</label>
+            <select name="teacher" id="teacherList">
+              <?php
+                foreach($teachers as $teacher)
+                {
+                  echo '<option value="' . $teacher["idTeacher"] . '">' . makeFullName($teacher["teaFirstName"], $teacher["teaLastName"]) . '</option>';
+                }
+              ?>
+            </select>
+            <input type="submit" name="addTeacher" value="Choisir" class="bt btn-info btn-sm">
+          </div> 
+        </form>    
+
         <?php
           if(isset($project["idCoordinator"]))
           {
-            echo '<strong>Eleves participant au projet : </strong><p> Jeremiah Steiner, Camila Djabali, Pyjus</p>';
+            echo '<strong>Eleves participant au projet : </strong>';
+            foreach($studentsInProject as $student)
+            {
+              echo '<p>' . makeFullName($student["stuFirstName"], $student["stuLastName"]) . ' ' . $student["stuClass"] . '</p>';
+            }
           } else {
             echo '<strong>Projet attribué à : </strong><p>Pas d\'éleves assigné pour l\'instant</p>';
           }
         ?>
-        <div class="form-group">
-          <label for="studentList">Liste des éleves</label> 
-          <select name="student" id="studentList">
-            <?php
-              foreach($students as $student)
-              {
-                echo '<option value="' . $student["idStudent"] . '">' . makeFullName($student["stuFirstName"], $student["stuLastName"]) . '</option>';
-              }
-            ?>
-          </select>
-        </div>
+
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="studentList">Liste des éleves</label> 
+            <select name="student" id="studentList">
+              <?php
+                foreach($students as $student)
+                {
+                  echo '<option value="' . $student["idStudent"] . '">' . makeFullName($student["stuFirstName"], $student["stuLastName"]) . ' ' . $student["stuClass"] . '</option>';
+                }
+              ?>
+            </select>
+            <input type="submit" name="addStudent" value="Ajouter au projet" class="bt btn-info btn-sm">
+          </div>
+        </form>
+
         <button class="bt btn-info btn-lg" data-toggle="modal" data-target="#modifyProject">Appliquer les modifications</button>
       </div>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -177,17 +210,19 @@
               <label for="exampleFormControlInputFir">Enseignant coordinateur</label>
               <input type="text" class="form-control" id="exampleFormControlInputFir" name="username">
             </div>
-            <div class="form-group">
-              <label for="studentList">Liste des éleves</label>
-              <select name="student" id="studentList">
-                <?php
-                  foreach($students as $student)
-                  {
-                    echo '<option value="' . $student["idStudent"] . '">' . makeFullName($student["stuFirstName"], $student["stuLastName"]) . '</option>';
-                  }
-                ?>
-              </select>
-            </div>
+            <form action="">
+              <div class="form-group">
+                <label for="studentList">Liste des éleves</label>
+                <select name="student" id="studentList">
+                  <?php
+                    foreach($students as $student)
+                    {
+                      echo '<option value="' . $student["idStudent"] . '">' . makeFullName($student["stuFirstName"], $student["stuLastName"]) . '</option>';
+                    }
+                  ?>
+                </select>
+              </div>
+            </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
               <input type="submit" name="applyModification" class="btn btn-primary" value="Appliquer">
