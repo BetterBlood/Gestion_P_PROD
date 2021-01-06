@@ -113,91 +113,94 @@
                         if (array_key_exists("isConnected", $_SESSION) && $_SESSION["isConnected"] >= 2)
                         {
                             ?>
-                                <a class="btn btn-success mb-2 mr-2" href="..\view\addProject.html">Ajouter un projet</a>
-                                <a class="btn btn-danger mb-2 mr-2" href="..\view\archivePage.php">Projets archivés</a>
+                                <a class="btn btn-light mb-2 mr-2 mt-2" href="..\view\addProject.html">Ajouter un projet</a>
+                                <a class="btn btn-light mb-2 mr-2 mt-2" href="..\view\archivePage.php">Projets archivés</a>
                             <?php
                         }
                     ?>
                 </div>
-            
-                <table class="table table-hover table-primary table-striped bg-white ">
-                    <thead class="table-light" >
-                        <tr onclick="location.href='#'">
-                            <th class="text-center align-middle" scope="col">#</th>
-                            <th class="text-center align-middle" scope="col">Date de début</th>
-                            <th class="text-center align-middle" scope="col">Nom</th>
-                            <th class="text-center align-middle" scope="col">Description</th>
-                            <th class="text-center align-middle" scope="col">Enseignants [Initiateur, Coordinateur]</th>
-                            <th class="text-center align-middle" scope="col">Élèves</th>
-                            <th class="text-center align-middle" scope="col">Archive</th>
-                        </tr>
-                    </thead>
-                    <tbody >
-                        
-                        <?php
-                            $j = 0;
+                
+                <div class="bg-secondary pr-1 pl-1 pb-1">
+                    <table class="table table-hover table-primary table-striped bg-white">
+                        <thead class="table-light" >
+                            <tr onclick="location.href='#'">
+                                <th class="text-center align-middle" scope="col">#</th>
+                                <th class="text-center align-middle" scope="col">Date de début</th>
+                                <th class="text-center align-middle" scope="col">Nom</th>
+                                <th class="text-center align-middle" scope="col">Description</th>
+                                <th class="text-center align-middle" scope="col">Enseignants [Initiateur, Coordinateur]</th>
+                                <th class="text-center align-middle" scope="col">Élèves</th>
+                                <th class="text-center align-middle" scope="col">Archive</th>
+                            </tr>
+                        </thead>
 
-                            foreach($projects as $project)
-                            {
-                                $initiatorTeacher = $database->getTeacherById($project["idInitiator"]);
-                                $coordinatorTeacherLastName = "aucun prof assigné";
-                                $students = $database->getStudentsByProjectId($project["idProject"]);
+                        <tbody>
+                            
+                            <?php
+                                $j = 0;
 
-                                if (isset($project["idCoordinator"]))
+                                foreach($projects as $project)
                                 {
-                                    $coordinatorTeacherLastName = $database->getTeacherById($project["idCoordinator"])["teaLastName"];
-                                }
+                                    $initiatorTeacher = $database->getTeacherById($project["idInitiator"]);
+                                    $coordinatorTeacherLastName = "aucun prof assigné";
+                                    $students = $database->getStudentsByProjectId($project["idProject"]);
 
-                                echo '<tr ';
-                                if (array_key_exists("isConnected", $_SESSION) && $_SESSION["isConnected"] >= 1)
-                                {
-                                     echo 'onclick="location.href=' . '\'details.php?idProject=' . $project["idProject"] .'\'"';
-                                }
-                                echo '>';
-                               
-                                echo '<th scope="row">' . $j++ . '</th>';
+                                    if (isset($project["idCoordinator"]))
+                                    {
+                                        $coordinatorTeacherLastName = $database->getTeacherById($project["idCoordinator"])["teaLastName"];
+                                    }
+
+                                    echo '<tr ';
+                                    if (array_key_exists("isConnected", $_SESSION) && $_SESSION["isConnected"] >= 1)
+                                    {
+                                        echo 'onclick="location.href=' . '\'details.php?idProject=' . $project["idProject"] .'\'"';
+                                    }
+                                    echo '>';
                                 
-                                echo '<td>' . $project["proStartingDate"] . '</td>';
-                                echo '<td><strong>' . $project["proName"] . '</strong></td>';
-                                echo '<td>' . $project["proDescription"] . '</td>';
-
-                                // TODO : rechercher dans la table des prof les ids ci-dessous et les affichers, 
-                                echo '<td>' . $initiatorTeacher["teaLastName"] . ', ' . $coordinatorTeacherLastName. '</td>';
-
-                                // TODO : vérifier si des élèves sont attribué si oui les afficher sinon afficher :"aucun élèves assignés"
-                                echo '<td>';
-                                    if(count($students) == 0)
-                                    {
-                                        echo "aucun élève assigné.";
-                                    }
-                                    else 
-                                    {
-                                        $i = 0;
-
-                                        foreach($students as $student)
-                                        {
-                                            if ($i < count($students) - 1)
-                                            {
-                                                echo $student["stuLastName"] . ", ";
-                                            }
-                                            else
-                                            {
-                                                echo $student["stuLastName"];
-                                            }
-                                            $i++;
-                                        }
-                                    }
-
+                                    echo '<th scope="row">' . $j++ . '</th>';
                                     
-                                echo '</td>';
+                                    echo '<td>' . $project["proStartingDate"] . '</td>';
+                                    echo '<td><strong>' . $project["proName"] . '</strong></td>';
+                                    echo '<td>' . $project["proDescription"] . '</td>';
 
-                                echo '<td><a class="btn btn-warning" href="..\view\homePage.php?id=' . $project["idProject"] . '">archiver</a></td>';
-                                echo '</tr>';
-                            }
-                        ?>
+                                    // TODO : rechercher dans la table des prof les ids ci-dessous et les affichers, 
+                                    echo '<td>' . $initiatorTeacher["teaLastName"] . ', ' . $coordinatorTeacherLastName. '</td>';
 
-                    </tbody>
-                </table>
+                                    // TODO : vérifier si des élèves sont attribué si oui les afficher sinon afficher :"aucun élèves assignés"
+                                    echo '<td>';
+                                        if(count($students) == 0)
+                                        {
+                                            echo "aucun élève assigné.";
+                                        }
+                                        else 
+                                        {
+                                            $i = 0;
+
+                                            foreach($students as $student)
+                                            {
+                                                if ($i < count($students) - 1)
+                                                {
+                                                    echo $student["stuLastName"] . ", ";
+                                                }
+                                                else
+                                                {
+                                                    echo $student["stuLastName"];
+                                                }
+                                                $i++;
+                                            }
+                                        }
+
+                                        
+                                    echo '</td>';
+
+                                    echo '<td><a class="btn btn-warning" href="..\view\homePage.php?id=' . $project["idProject"] . '">archiver</a></td>';
+                                    echo '</tr>';
+                                }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <footer>
